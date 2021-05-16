@@ -21,6 +21,9 @@ class DanglingOperator(DiceException):
 class IlligalSequence(DiceException):
 	pass
 
+class BadToken(DiceException):
+	pass
+
 def avg_dice(num_dice: float, num_sides: float) -> float:
 	return ( ( num_sides + 1 ) / 2 ) * num_dice
 
@@ -77,7 +80,7 @@ def main(eq_og: str) -> None:
 			elif not is_op(c) and (c.isnumeric() or c == 'd'):
 				current_token = f"{current_token}{c}"
 			else:
-				print(f"Bad token '{c}'")
+				raise BadToken(f"Bad token '{c}'")
 				sys.exit(0)
 			index += 1
 		if last_op != '':
@@ -88,7 +91,7 @@ def main(eq_og: str) -> None:
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='dice average')
-	parser.add_argument('eq', help='dice equation is a combinatiopn of (+,-) and <number>d<sides>', type=str)
+	parser.add_argument('eq', help='dice equation (+,-) <number>d<sides> NEED SPACES', type=str)
 	args = parser.parse_args()
 	main(args.eq)
 
