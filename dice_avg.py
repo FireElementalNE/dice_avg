@@ -88,7 +88,7 @@ def main(eq_og: str) -> None:
 
 if __name__ == '__main__':
 	parser = argparse.ArgumentParser(description='dice average')
-	parser.add_argument('eq', help='dice equation (+,-) <number>d<sides> NEED SPACES', type=str)
+	parser.add_argument('eq', help='dice equation is a combinatiopn of (+,-) and <number>d<sides>', type=str)
 	args = parser.parse_args()
 	main(args.eq)
 
